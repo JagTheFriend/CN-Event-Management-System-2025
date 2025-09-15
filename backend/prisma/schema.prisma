@@ -12,3 +12,52 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum USER_ROLE {
+  ADMIN
+  EVENT_MANAGER
+  USER
+}
+
+model User {
+  id   String    @id
+  role USER_ROLE @default(USER)
+
+  enrolledEvents Event[]
+  comments       Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id String @id @default(cuid())
+
+  name        String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  comments Comment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Comment {
+  id String @id @default(cuid())
+
+  content String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
