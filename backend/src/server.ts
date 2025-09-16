@@ -5,6 +5,7 @@ import express, {
 	type Request,
 	type Response,
 } from "express";
+import { commentRouter } from "./routes/comment";
 import { eventRouter } from "./routes/event";
 
 dotenv();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/event", eventRouter);
+app.use("/comment", commentRouter);
 
 app.get("/", (_req: Request, res: Response) => {
 	res.send("Hello World");
