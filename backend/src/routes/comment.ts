@@ -35,7 +35,7 @@ commentRouter.post("/new", async (req, res) => {
 	return res.json(data);
 });
 
-commentRouter.put("/:id", async (req, res) => {
+commentRouter.put("/edit/:id", async (req, res) => {
 	const { id } = req.params;
 	const { content } = req.body;
 	const data = await db.comment.update({
@@ -49,7 +49,7 @@ commentRouter.put("/:id", async (req, res) => {
 	return res.json(data);
 });
 
-commentRouter.delete("/:id", async (req, res) => {
+commentRouter.delete("/delete/:id", async (req, res) => {
 	const { id } = req.params;
 	const data = await db.comment.delete({
 		where: {
