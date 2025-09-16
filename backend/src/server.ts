@@ -2,6 +2,7 @@ import cors from "cors";
 import { config as dotenv } from "dotenv";
 import express, {
 	type Application,
+	type NextFunction,
 	type Request,
 	type Response,
 } from "express";
@@ -18,6 +19,11 @@ app.use(express.json());
 
 app.use("/event", eventRouter);
 app.use("/comment", commentRouter);
+
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+	console.error(err.stack);
+	res.status(500).json({ data: null, message: "Internal Server Error" });
+});
 
 app.get("/", (_req: Request, res: Response) => {
 	res.send("Hello World");
