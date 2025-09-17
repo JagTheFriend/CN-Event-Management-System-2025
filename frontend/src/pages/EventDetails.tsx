@@ -3,9 +3,11 @@ import events from "@/data/events.json";
 import type { Event } from "@/interfaces/event.interface";
 import { Button } from "@/components/ui/button";
 import { Users2Icon } from "lucide-react";
+import CommentBox from "@/components/CommentBox";
 
 export default function EventDetails() {
   const { id } = useParams();
+  // @ts-ignore
   const event: Event = events.filter(e => e.id === id)[0];
 
   const getContent = (content: string) => content;
@@ -45,6 +47,10 @@ export default function EventDetails() {
           )
         }
       </div>
+
+      <hr className="my-3" />
+
+      <CommentBox />
     </div>
   )
 }
