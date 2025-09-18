@@ -1,0 +1,242 @@
+[
+  {
+    "id": "9c84e0c0-2df0-4f02-9f7c-d31f6c2b6c45",
+    "title": "Tech Conference 2025",
+    "tagline": "Innovating tomorrow, today.",
+    "description": "<p>The annual <strong>Tech Conference</strong> brings together innovators and industry leaders.</p><h3>Highlights</h3><ul><li>AI and Machine Learning talks</li><li>Networking opportunities</li><li>Hands-on workshops</li></ul><p>Don’t miss the chance to connect with professionals shaping the future.</p>",
+    "startDate": "2025-01-10T09:00:00",
+    "endDate": "2025-02-09T17:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "dbe1d6a1-6a2e-4a2a-8f87-21f87150a9b1",
+    "title": "Art Exhibition",
+    "tagline": "Where imagination meets canvas.",
+    "description": "<p>A vibrant display of <em>modern creativity</em> from talented artists worldwide.</p><h3>Exhibition Sections</h3><ol><li>Abstract Paintings</li><li>Digital Installations</li><li>Interactive Sculptures</li></ol><p>Experience the future of art like never before.</p>",
+    "startDate": "2025-03-05T10:00:00",
+    "endDate": "2025-04-04T18:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "1a7f6a5d-62de-4c0b-83a2-91c47f80c8d3",
+    "title": "Startup Pitch Day",
+    "tagline": "Fueling ideas, funding dreams.",
+    "description": "<p>Founders present their ideas to potential investors.</p><h3>Agenda</h3><ul><li>Opening keynote</li><li>Pitch Presentations</li><li>Investor Q&A</li></ul><p>An opportunity for <strong>entrepreneurs</strong> to shine.</p>",
+    "startDate": "2025-05-12T14:00:00",
+    "endDate": "2025-06-11T19:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "77bc3a2c-94bb-4a2b-93a6-31f91c1b3c92",
+    "title": "Music Festival",
+    "tagline": "Feel the beat, live the moment.",
+    "description": "<p>A weekend full of live performances by top bands.</p><h3>Lineup</h3><ol><li>Rock Night</li><li>Jazz Evening</li><li>DJ Closing Party</li></ol><p>Enjoy music under the stars with friends and family.</p>",
+    "startDate": "2025-08-26T12:00:00",
+    "endDate": "2025-09-26T23:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "35d2aee1-82ff-4c2e-86fb-62d07c542d70",
+    "title": "Science Fair",
+    "tagline": "Discover. Experiment. Inspire.",
+    "description": "<p>Students present innovative science projects and experiments.</p><h3>Featured Projects</h3><ul><li>Robotics and AI</li><li>Renewable Energy</li><li>Space Exploration Models</li></ul><p>Igniting curiosity among the next generation of scientists.</p>",
+    "startDate": "2025-09-15T09:30:00",
+    "endDate": "2025-10-15T16:30:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "ad01d5f3-b3d8-4d3e-90b4-50b62a7a0e6a",
+    "title": "Community Marathon",
+    "tagline": "Run for passion, run for cause.",
+    "description": "<p>Annual charity run to support local causes.</p><h3>Race Categories</h3><ul><li>5K Fun Run</li><li>10K Challenge</li><li>Half Marathon</li></ul><p>Every step you take makes a difference.</p>",
+    "startDate": "2025-10-22T06:00:00",
+    "endDate": "2025-11-21T12:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "b923f99c-6f0a-4c6f-8e01-b6f11a3f33b5",
+    "title": "Book Fair",
+    "tagline": "Where stories come alive.",
+    "description": "<p>Discover new books, meet authors, and attend readings.</p><h3>Events</h3><ul><li>Author Talks</li><li>Book Launches</li><li>Children’s Reading Corner</li></ul><p>A haven for every book lover.</p>",
+    "startDate": "2025-11-25T09:00:00",
+    "endDate": "2025-12-25T18:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "ec63f5a2-73e1-4d64-9c6e-71132f05888b",
+    "title": "Food Festival",
+    "tagline": "Taste the world on a plate.",
+    "description": "<p>Taste dishes from around the world in one place.</p><h3>Specials</h3><ul><li>Street Food Stalls</li><li>Cooking Competitions</li><li>Live Recipe Demos</li></ul><p>A paradise for every food enthusiast.</p>",
+    "startDate": "2025-12-29T11:00:00",
+    "endDate": "2026-01-28T22:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "cd2080f6-df73-4db7-84f8-dc6e55f3941f",
+    "title": "Coding Bootcamp",
+    "tagline": "Code. Build. Launch.",
+    "description": "<p>An intensive workshop on full-stack web development.</p><h3>Curriculum</h3><ol><li>Frontend Fundamentals</li><li>Backend Development</li><li>Deployment Strategies</li></ol><p>Kickstart your career in tech with this bootcamp.</p>",
+    "startDate": "2026-02-02T09:00:00",
+    "endDate": "2026-03-04T17:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  },
+  {
+    "id": "e1f1b33b-13c6-4c9b-9f0b-dc5d2f76b7c3",
+    "title": "Film Festival",
+    "tagline": "Lights, camera, celebration!",
+    "description": "<p>Screening of independent films and documentaries.</p><h3>Categories</h3><ul><li>Short Films</li><li>Feature Films</li><li>Documentaries</li></ul><p>Celebrate the art of storytelling through cinema.</p>",
+    "startDate": "2026-04-10T10:00:00",
+    "endDate": "2026-05-10T22:00:00",
+    "createdAt": "2025-09-16T17:00:00",
+    "updatedAt": "2025-09-16T17:00:00",
+    "users": [
+    {
+        "id": "9c84e0c0-2df0-4f02-9f8c-d31f9c2b6c45",
+        "username": "john2022",
+        "createdAt": "2025-09-17T17:00:00",
+        "updatedAt": "2025-09-16T17:00:00"
+    },
+    {
+        "id": "9c84e0c0-2df0-4f02-9f2c-d31f7c2b6c45",
+        "username": "jag2005",
+        "createdAt": "2025-09-17T17: 00: 00",
+        "updatedAt": "2025-09-16T17: 00: 00"
+    }
+]
+  }
+]
