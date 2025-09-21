@@ -26,13 +26,14 @@ eventRouter.get("/:id", async (req, res) => {
 });
 
 eventRouter.post("/new", async (req, res) => {
-	const { name, description, startDate, endDate } = req.body;
+	const { name, description, startDate, endDate, userId } = req.body;
 	const data = await db.event.create({
 		data: {
 			name,
 			description,
 			startDate: new Date(startDate),
 			endDate: new Date(endDate),
+			userId,
 		},
 	});
 	return res.json(data);
