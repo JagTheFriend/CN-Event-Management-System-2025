@@ -1,23 +1,54 @@
 import { EventCard } from "@/components/EventCard";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
-import events from "@/data/events.json"; // TODO: remove dummy data
+// removed dummy data import
 import type { Event } from "@/interfaces/event.interface";
-import { useState } from "react";
+import { useState, useEffect, type JSX } from "react";
+import axios from "axios";
+import { BACKEND_URL } from "@/lib/config";
 
 export default function Events() {
-  // @ts-ignore
-  const [filteredEvents, setFilteredEvents] = useState<Event[]>(events);
-  const [searchText, setSearchText] = useState('');
+  const [allEvents, setAllEvents] = useState<Event[]>([]);
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    let mounted = true;
+
+    axios
+      .get<Event[]>(`${BACKEND_URL}/event`)
+      .then((res) => {
+        if (!mounted) return;
+        // backend currently returns an array of events directly
+        const data = res.data ?? [];
+        // normalize name -> title if backend uses `name`
+        const normalized = data.map((ev: any) => ({
+          ...ev,
+          title: ev.title ?? ev.name,
+        })) as Event[];
+        setAllEvents(normalized);
+        setFilteredEvents(normalized);
+      })
+      .catch(() => {
+        // leave arrays empty if backend not available
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.currentTarget.value;
     setSearchText(query);
     setFilteredEvents(
-      // @ts-ignore
-      searchText.length > 0 ? events.filter(event =>
-        event.title.toLowerCase().includes(query.toLowerCase())
-      ) : events
+      query.length > 0
+        ? allEvents.filter((event) =>
+            // some dummy events use `title`, others may use `name` — keep title for now
+            // @ts-ignore
+            event.title.toLowerCase().includes(query.toLowerCase())
+          )
+        : allEvents
     );
   };
 
@@ -30,18 +61,20 @@ export default function Events() {
           onChange={handleSearchInput}
         />
       </div>
-      {filteredEvents.length > 0 && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6">
-        {filteredEvents.map((item, index) => (
-          <EventCard key={index} {...item} />
-        ))}
-
-
-      </div>}
-      {filteredEvents.length === 0 && <div className="px-4">
-        <Alert variant="destructive">
-          <AlertTitle>No search results found for "{searchText}"</AlertTitle>
-        </Alert>
-      </div>}
+      {filteredEvents.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6">
+          {filteredEvents.map((item, index) => (
+            <EventCard key={index} {...item} />
+          ))}
+        </div>
+      )}
+      {filteredEvents.length === 0 && (
+        <div className="px-4">
+          <Alert variant="destructive">
+            <AlertTitle>No search results found for "{searchText}"</AlertTitle>
+          </Alert>
+        </div>
+      )}
     </>
   );
 }
