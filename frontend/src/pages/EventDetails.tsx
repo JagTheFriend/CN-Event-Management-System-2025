@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import type { Event } from "@/interfaces/event.interface";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Users2Icon } from "lucide-react";
+import { Loader2Icon, Users2Icon } from "lucide-react";
 import CommentBox from "@/components/CommentBox";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { BACKEND_URL } from "@/lib/config";
@@ -52,7 +52,9 @@ export default function EventDetails() {
       mounted = false;
     };
   }, [id]);
-  if (loading) return <div className="px-4">Loading...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center">
+    <p className="flex items-center gap-4"><Loader2Icon className="animate-spin" /> Loading...</p>
+  </div>;
   if (error) return <div className="px-4 text-red-500">Error: {error}</div>;
   if (!event) return <div className="px-4">Event not found</div>;
 
@@ -67,7 +69,7 @@ export default function EventDetails() {
 
       <hr className="my-3" />
 
-      <div className="prose dark:prose-invert">
+      <div className="prose dark:prose-invert mb-4">
         <div
           dangerouslySetInnerHTML={{ __html: getContent(event.description) }}
         ></div>
@@ -134,10 +136,9 @@ export default function EventDetails() {
                       "Anonymous"}
                   </CardTitle>
                   <p
-                    className={`text-sm ${
-                      !isExpanded &&
+                    className={`text-sm ${!isExpanded &&
                       "whitespace-nowrap overflow-hidden text-ellipsis max-w-3xl"
-                    }`}
+                      }`}
                   >
                     {(c as any).content}
                   </p>
