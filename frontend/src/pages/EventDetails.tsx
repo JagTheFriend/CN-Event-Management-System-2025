@@ -17,8 +17,6 @@ export default function EventDetails() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const getContent = (content: string) => content;
-
   const toggleShowMore = (index: number) => {
     setShowMoreIndex((prev) => (prev === index ? null : index));
   };
@@ -53,11 +51,14 @@ export default function EventDetails() {
     };
   }, [id]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">
-    <p className="flex items-center gap-4"><Loader2Icon className="animate-spin" /> Loading...</p>
-  </div>;
-
-  if (loading) return <div className="px-4">Loading...</div>;
+  if (loading)
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="flex items-center gap-4">
+          <Loader2Icon className="animate-spin" /> Loading...
+        </p>
+      </div>
+    );
 
   if (error) return <div className="px-4 text-red-500">Error: {error}</div>;
   if (!event) return <div className="px-4">Event not found</div>;
@@ -73,13 +74,9 @@ export default function EventDetails() {
 
       <hr className="my-3" />
 
-
       <div className="prose dark:prose-invert mb-4">
-
-      <div className="prose dark:prose-invert">
-
         <div
-          dangerouslySetInnerHTML={{ __html: getContent(event.description) }}
+          dangerouslySetInnerHTML={{ __html: event.description }}
         ></div>
       </div>
 
@@ -102,7 +99,7 @@ export default function EventDetails() {
 
       <hr className="my-3" />
 
-      {/* Owner and participants */}
+      {/* Organizer */}
       <div>
         <h3 className="text-lg font-bold mb-2">Organizer</h3>
         <Card>
@@ -113,7 +110,6 @@ export default function EventDetails() {
             <p className="text-sm text-muted-foreground">Organizer ID</p>
           </CardContent>
         </Card>
-        {/* If the backend supports participants in the future, render them here. */}
       </div>
 
       <hr className="my-3" />
@@ -121,7 +117,6 @@ export default function EventDetails() {
       <CommentBox
         eventId={event.id}
         onSuccess={(c: any) => {
-          // append the newly created comment to local state
           setEvent((prev) => ({
             ...(prev as Event),
             comments: [...(prev?.comments ?? []), c],
@@ -139,40 +134,23 @@ export default function EventDetails() {
               <Card key={c.id}>
                 <CardContent className="space-y-2">
                   <CardTitle>
-                    {(c as any).user?.username ??
-                      (c as any).userId ??
-                      "Anonymous"}
+                    {(c as any).user?.username ?? (c as any).userId ?? "Anonymous"}
                   </CardTitle>
                   <p
-
-                    className={`text-sm ${!isExpanded &&
-                      "whitespace-nowrap overflow-hidden text-ellipsis max-w-3xl"
-                      }`}
-
                     className={`text-sm ${
                       !isExpanded &&
                       "whitespace-nowrap overflow-hidden text-ellipsis max-w-3xl"
                     }`}
-
                   >
                     {(c as any).content}
                   </p>
 
-                  {!isExpanded ? (
-                    <Badge
-                      className="cursor-pointer"
-                      onClick={() => toggleShowMore(index)}
-                    >
-                      Read More
-                    </Badge>
-                  ) : (
-                    <Badge
-                      className="cursor-pointer"
-                      onClick={() => toggleShowMore(index)}
-                    >
-                      Show Less
-                    </Badge>
-                  )}
+                  <Badge
+                    className="cursor-pointer"
+                    onClick={() => toggleShowMore(index)}
+                  >
+                    {isExpanded ? "Show Less" : "Read More"}
+                  </Badge>
                 </CardContent>
               </Card>
             );
