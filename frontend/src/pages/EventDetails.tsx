@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import type { Event } from "@/interfaces/event.interface";
 import { Badge } from "@/components/ui/badge";
@@ -26,14 +27,13 @@ export default function EventDetails() {
     if (!id) return;
     setLoading(true);
     setError(null);
+    let mounted = true;
 
-    fetch(`${BACKEND_URL}/event/${id}`)
-      .then(async (res) => {
-        if (!res.ok) throw new Error(await res.text());
-        return res.json();
-      })
-      .then((data) => {
-        // normalize backend 'name' -> frontend 'title' if necessary
+    axios
+      .get(`${BACKEND_URL}/event/${id}`)
+      .then((res) => {
+        if (!mounted) return;
+        const data = res.data;
         if (data) {
           const normalized = { ...data, title: data.title ?? data.name };
           setEvent(normalized as Event);
@@ -41,8 +41,16 @@ export default function EventDetails() {
           setEvent(null);
         }
       })
-      .catch((err) => setError(err.message || "Failed to load event"))
-      .finally(() => setLoading(false));
+      .catch((err) => {
+        setError(err?.response?.data || err.message || "Failed to load event");
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, [id]);
   if (loading) return <div className="px-4">Loading...</div>;
   if (error) return <div className="px-4 text-red-500">Error: {error}</div>;
@@ -84,31 +92,32 @@ export default function EventDetails() {
 
       <hr className="my-3" />
 
-      {/* Enrolled users - render if event.users exists, otherwise show placeholder */}
+      {/* Owner and participants */}
       <div>
-        <h3 className="text-lg font-bold mb-4">Participants</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {event.users && event.users.length > 0
-            ? event.users.map((u) => (
-                <Card key={u.id}>
-                  <CardContent>
-                    <p>{u.username}</p>
-                  </CardContent>
-                </Card>
-              ))
-            : ["", "", "", "", "", ""].map((_, index) => (
-                <Card key={index}>
-                  <CardContent>
-                    <p>John Doe</p>
-                  </CardContent>
-                </Card>
-              ))}
-        </div>
+        <h3 className="text-lg font-bold mb-2">Organizer</h3>
+        <Card>
+          <CardContent>
+            <p className="font-medium">
+              {(event as any).user?.username ?? event.id}
+            </p>
+            <p className="text-sm text-muted-foreground">Organizer ID</p>
+          </CardContent>
+        </Card>
+        {/* If the backend supports participants in the future, render them here. */}
       </div>
 
       <hr className="my-3" />
 
-      <CommentBox />
+      <CommentBox
+        eventId={event.id}
+        onSuccess={(c: any) => {
+          // append the newly created comment to local state
+          setEvent((prev) => ({
+            ...(prev as Event),
+            comments: [...(prev?.comments ?? []), c],
+          }));
+        }}
+      />
 
       {/* Comments */}
       <div className="mt-4">
