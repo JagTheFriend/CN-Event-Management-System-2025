@@ -6,10 +6,15 @@ import type { Event } from "@/interfaces/event.interface";
 import { useState, useEffect, type JSX } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "@/lib/config";
+
 import { Loader2Icon } from "lucide-react";
 
 export default function Events() {
   const [loading, setLoading] = useState(false);
+
+
+export default function Events() {
+
   const [allEvents, setAllEvents] = useState<Event[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [searchText, setSearchText] = useState("");
@@ -18,6 +23,7 @@ export default function Events() {
     let mounted = true;
 
     setLoading(true);
+
     axios
       .get<Event[]>(`${BACKEND_URL}/event`)
       .then((res) => {
@@ -31,10 +37,15 @@ export default function Events() {
         })) as Event[];
         setAllEvents(normalized);
         setFilteredEvents(normalized);
+
         setLoading(false);
       })
       .catch(() => {
         setLoading(false);
+
+      })
+      .catch(() => {
+
         // leave arrays empty if backend not available
       });
 
@@ -49,16 +60,24 @@ export default function Events() {
     setFilteredEvents(
       query.length > 0
         ? allEvents.filter((event) =>
+
           // some dummy events use `title`, others may use `name` — keep title for now
           // @ts-ignore
           event.title.toLowerCase().includes(query.toLowerCase())
         )
+
+            // some dummy events use `title`, others may use `name` — keep title for now
+            // @ts-ignore
+            event.title.toLowerCase().includes(query.toLowerCase())
+          )
+
         : allEvents
     );
   };
 
   return (
     <>
+
       {
         loading && <div className="min-h-screen flex items-center justify-center">
           <p className="flex items-center gap-4"><Loader2Icon className="animate-spin" /> Loading...</p>
@@ -89,6 +108,29 @@ export default function Events() {
           )}
         </>
       }
+
+      <div className="w-full px-4 mb-4">
+        <Input
+          type="search"
+          placeholder="Search for events..."
+          onChange={handleSearchInput}
+        />
+      </div>
+      {filteredEvents.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-6">
+          {filteredEvents.map((item, index) => (
+            <EventCard key={index} {...item} />
+          ))}
+        </div>
+      )}
+      {filteredEvents.length === 0 && (
+        <div className="px-4">
+          <Alert variant="destructive">
+            <AlertTitle>No search results found for "{searchText}"</AlertTitle>
+          </Alert>
+        </div>
+      )}
+
     </>
   );
 }

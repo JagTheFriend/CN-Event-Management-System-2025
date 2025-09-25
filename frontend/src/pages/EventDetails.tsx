@@ -52,9 +52,13 @@ export default function EventDetails() {
       mounted = false;
     };
   }, [id]);
+
   if (loading) return <div className="min-h-screen flex items-center justify-center">
     <p className="flex items-center gap-4"><Loader2Icon className="animate-spin" /> Loading...</p>
   </div>;
+
+  if (loading) return <div className="px-4">Loading...</div>;
+
   if (error) return <div className="px-4 text-red-500">Error: {error}</div>;
   if (!event) return <div className="px-4">Event not found</div>;
 
@@ -69,7 +73,11 @@ export default function EventDetails() {
 
       <hr className="my-3" />
 
+
       <div className="prose dark:prose-invert mb-4">
+
+      <div className="prose dark:prose-invert">
+
         <div
           dangerouslySetInnerHTML={{ __html: getContent(event.description) }}
         ></div>
@@ -136,9 +144,16 @@ export default function EventDetails() {
                       "Anonymous"}
                   </CardTitle>
                   <p
+
                     className={`text-sm ${!isExpanded &&
                       "whitespace-nowrap overflow-hidden text-ellipsis max-w-3xl"
                       }`}
+
+                    className={`text-sm ${
+                      !isExpanded &&
+                      "whitespace-nowrap overflow-hidden text-ellipsis max-w-3xl"
+                    }`}
+
                   >
                     {(c as any).content}
                   </p>
