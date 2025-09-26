@@ -9,7 +9,7 @@
 		// See also https://aka.ms/tsconfig/module
 		"module": "esnext",
 		"target": "es6",
-		"types": [],
+		"types": ["node"],
 		"esModuleInterop": false,
 		"moduleResolution": "bundler",
 		// For nodejs:
@@ -47,6 +47,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src/**/*.ts"],
+	"include": ["src/**/*.ts", "src/**/*.d.ts"],
 	"exclude": ["node_modules"]
 }
