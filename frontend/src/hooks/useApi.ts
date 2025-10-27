@@ -7,7 +7,7 @@ export const useApi = () => {
 
   const apiCall = async (endpoint: string, options: RequestInit = {}) => {
     const token = await getToken();
-    
+    console.log("Clerk token being sent:", token);
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
       headers: {

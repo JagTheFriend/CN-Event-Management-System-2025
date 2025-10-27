@@ -117,16 +117,31 @@ userRouter.post("/enroll/:eventId", async (req, res) => {
       });
     }
 
-    // Check if user exists
-    const user = await db.user.findUnique({
+    // Check if user exists, if not, auto-create from Clerk JWT
+    let user = await db.user.findUnique({
       where: { id: userId }
     });
 
     if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found"
-      });
+      // Try to get user info from Clerk JWT (req.auth)
+      // Fallbacks: use userId, and set email/name as null if not available
+      try {
+        user = await db.user.create({
+          data: {
+            id: userId,
+            email: `user_${userId}@example.com`,
+            name: null,
+            role: "USER"
+          }
+        });
+        console.log("Auto-created user in DB for Clerk ID:", userId);
+      } catch (err) {
+        console.error("Failed to auto-create user:", err);
+        return res.status(500).json({
+          success: false,
+          message: "Failed to auto-create user"
+        });
+      }
     }
 
     // Check if event exists

@@ -125,8 +125,7 @@ async function handleUserDeleted(userData: any) {
   try {
     const { id } = userData;
 
-    // Delete user and all related data (enrollments, comments)
-    // The CASCADE relations in the schema will handle related deletions
+  
     await db.user.delete({
       where: { id }
     });
@@ -138,11 +137,3 @@ async function handleUserDeleted(userData: any) {
   }
 }
 
-// Health check endpoint for webhooks
-webhookRouter.get("/health", (_req: Request, res: Response) => {
-  res.status(200).json({ 
-    status: "ok", 
-    message: "Webhook service is running",
-    timestamp: new Date().toISOString()
-  });
-});
