@@ -102,7 +102,4 @@ export const optionalAuth = async (req: Request, res: Response, next: NextFuncti
     }
     next();
   } catch (error) {
-    // Ignore errors for optional auth
-    next();
-  }
-};
+    // Clerk authentication removed. Use JWT middleware instead.
