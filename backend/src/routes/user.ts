@@ -122,7 +122,6 @@ userRouter.post("/enroll/:eventId", async (req, res) => {
     let user = await db.user.findUnique({
       where: { id: userId },
     });
-
     if (!user) {
       // Fetch real user data from Clerk and auto-create in database
       try {

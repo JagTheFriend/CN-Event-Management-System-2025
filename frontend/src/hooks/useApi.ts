@@ -1,13 +1,12 @@
-import { useAuth } from "@clerk/clerk-react";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-export const useApi = () => {
-  const { getToken } = useAuth();
+export const useApi = () => { 
+  // Clerk removed. Use JWT from localStorage or context instead.
 
   const apiCall = async (endpoint: string, options: RequestInit = {}) => {
-    const token = await getToken();
-    console.log("Clerk token being sent:", token);
+    const token = localStorage.getItem('jwt'); // Assuming JWT is stored in localStorage
+    console.log("JWT token being sent:", token);
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
       headers: {
