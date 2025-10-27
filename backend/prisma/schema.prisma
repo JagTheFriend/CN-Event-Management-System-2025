@@ -24,6 +24,7 @@ model User {
   email    String    @unique
   name     String?
   imageUrl String?
+  password String?
   role     USER_ROLE @default(USER)
 
   enrolledEvents Event[]

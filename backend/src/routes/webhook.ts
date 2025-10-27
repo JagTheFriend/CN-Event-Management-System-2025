@@ -66,74 +66,7 @@ async function handleUserCreated(userData: any) {
     const primaryEmail = email_addresses.find((email: any) => email.id === userData.primary_email_address_id);
 
     if (!primaryEmail) {
-      console.error("No primary email found for user:", id);
+    // Clerk webhook logic removed.
       return;
+
     }
-
-    const user = await db.user.create({
-      data: {
-        id,
-        email: primaryEmail.email_address,
-        name: first_name && last_name ? `${first_name} ${last_name}`.trim() : first_name || last_name || null,
-        imageUrl: image_url || null,
-        role: "USER"
-      }
-    });
-
-    console.log("Created user:", user.id);
-  } catch (error) {
-    // Handle case where user already exists
-    if (error instanceof Error && error.message.includes("Unique constraint")) {
-      console.log("User already exists in database:", userData.id);
-      return;
-    }
-    console.error("Error creating user:", error);
-    throw error;
-  }
-}
-
-// Handler for user.updated event
-async function handleUserUpdated(userData: any) {
-  try {
-    const { id, email_addresses, first_name, last_name, image_url } = userData;
-
-    const primaryEmail = email_addresses.find((email: any) => email.id === userData.primary_email_address_id);
-
-    if (!primaryEmail) {
-      console.error("No primary email found for user:", id);
-      return;
-    }
-
-    const user = await db.user.update({
-      where: { id },
-      data: {
-        email: primaryEmail.email_address,
-        name: first_name && last_name ? `${first_name} ${last_name}`.trim() : first_name || last_name || null,
-        imageUrl: image_url || null
-      }
-    });
-
-    console.log("Updated user:", user.id);
-  } catch (error) {
-    console.error("Error updating user:", error);
-    throw error;
-  }
-}
-
-// Handler for user.deleted event
-async function handleUserDeleted(userData: any) {
-  try {
-    const { id } = userData;
-
-  
-    await db.user.delete({
-      where: { id }
-    });
-
-    console.log("Deleted user:", id);
-  } catch (error) {
-    console.error("Error deleting user:", error);
-    throw error;
-  }
-}
-
