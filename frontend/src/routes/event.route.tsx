@@ -6,7 +6,7 @@ export const eventRoutes: RouteObject[] = [
     {
         path: '',
         element: <Events />
-    }, 
+    },
     {
         path: ':id',
         element: <EventDetails />
