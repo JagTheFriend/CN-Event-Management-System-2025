@@ -1,48 +1,42 @@
 import cors from "cors";
-import { config as dotenv } from "dotenv";
-import express, {
-	type Application,
-	type NextFunction,
-	type Request,
-	type Response,
-} from "express";
+import dotenv from "dotenv";
+import express from "express";
+
 import { commentRouter } from "./routes/comment";
 import { eventRouter } from "./routes/event";
 import { userRouter } from "./routes/user";
 import { webhookRouter } from "./routes/webhook";
 
-dotenv();
+dotenv.config();
 
-const app: Application = express();
+const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 
-// Use raw body parser for webhook routes to preserve the raw body for signature verification
 app.use("/webhook", express.raw({ type: "application/json" }));
 
-// Use webhook routes before JSON parser
 app.use("/webhook", webhookRouter);
 
-// Regular JSON parser for other routes
 app.use(express.json());
 
-// Public routes (no authentication required)
 app.use("/event", eventRouter);
 
-// Protected routes (authentication required) - We'll handle auth in individual routes
 app.use("/user", userRouter);
 app.use("/comment", commentRouter);
 
-app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
-	console.error(err.stack);
-	res.status(500).json({ data: null, message: "Internal Server Error" });
+app.use((err, _req, res, _next) => {
+  console.error(err.stack);
+  res.status(500).json({ data: null, message: "Internal Server Error" });
 });
 
-app.get("/", (_req: Request, res: Response) => {
-	res.send("Hello World");
+app.get("/", (_req, res) => {
+  res.send("Hello World");
 });
 
 app.listen(port, () => {
-	console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });

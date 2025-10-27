@@ -34,10 +34,21 @@ const columns: ColumnDef<Event>[] = [
       const id = row.getValue("id");
       return (
         <div className="flex items-center gap-2">
-          <Link to={`/dashboad/edit/${id}`} className={buttonVariants()}>
+          <Link to={`/dashboard/edit/${id}`} className={buttonVariants()}>
             <PencilIcon />
           </Link>
-          <Button className="cursor-pointer" variant="destructive">
+          <Button
+            className="cursor-pointer"
+            variant="destructive"
+            onClick={() => {
+              if (window.confirm("Are you sure you want to delete this event?")) {
+                // Call backend delete API (correct route)
+                axios.delete(`${BACKEND_URL}/event/delete/${id}`)
+                  .then(() => window.location.reload())
+                  .catch(() => alert("Failed to delete event"));
+              }
+            }}
+          >
             <Trash2Icon />
           </Button>
         </div>
@@ -52,10 +63,10 @@ export default function Dashboard() {
   useEffect(() => {
     let mounted = true;
     axios
-      .get<Event[]>(`${BACKEND_URL}/event`)
+      .get<{ success: boolean; data: Event[] }>(`${BACKEND_URL}/user/enrolled-events`, { withCredentials: true })
       .then((res) => {
         if (!mounted) return;
-        const data = res.data ?? [];
+        const data = res.data?.data ?? [];
         const normalized = data.map((d: any) => ({
           ...d,
           title: d.title ?? d.name,
