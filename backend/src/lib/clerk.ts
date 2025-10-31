@@ -1,2 +1,3 @@
+import { Clerk } from "@clerk/clerk-sdk-node";
 
-// Clerk SDK removed.
+export const clerk = new Clerk({ secretKey: process.env.CLERK_SECRET_KEY });
