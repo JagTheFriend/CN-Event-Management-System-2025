@@ -15,6 +15,8 @@ export default defineConfig({
 		},
 	},
 	server: {
-		port: 3000,
+		host: "0.0.0.0", // Bind to all available network interfaces
+		port: 3000, // Use Render's PORT environment variable or a default
+		allowedHosts: true,
 	},
 });
