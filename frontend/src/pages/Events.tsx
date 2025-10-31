@@ -1,11 +1,10 @@
-import axios from "axios";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { EventCard } from "@/components/EventCard";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
+import events from "@/data/events.json";
 import type { Event } from "@/interfaces/event.interface";
-import { BACKEND_URL } from "@/lib/config";
 
 export default function Events() {
 	const [loading, setLoading] = useState(false);
@@ -17,24 +16,27 @@ export default function Events() {
 		let mounted = true;
 		setLoading(true);
 
-		axios
-			.get<Event[]>(`${BACKEND_URL}/event`)
-			.then((res) => {
-				if (!mounted) return;
-				const data = res.data ?? [];
-				const normalized = data.map((ev: any) => ({
-					...ev,
-					title: ev.title ?? ev.name,
-				})) as Event[];
-				setAllEvents(normalized);
-				setFilteredEvents(normalized);
-			})
-			.catch(() => {
-				// if backend not available, leave arrays empty
-			})
-			.finally(() => {
-				if (mounted) setLoading(false);
-			});
+		// axios
+		// 	.get<Event[]>(`${BACKEND_URL}/event`)
+		// 	.then((res) => {
+		// 		if (!mounted) return;
+		// 		const data = res.data ?? [];
+		// 		const normalized = data.map((ev: any) => ({
+		// 			...ev,
+		// 			title: ev.title ?? ev.name,
+		// 		})) as Event[];
+		// 		setAllEvents(normalized);
+		// 		setFilteredEvents(normalized);
+		// 	})
+		// 	.catch(() => {
+		// if backend not available, leave arrays empty
+		setAllEvents(events as unknown as Event[]);
+		setFilteredEvents(events as unknown as Event[]);
+		setLoading(false);
+		// })
+		// .finally(() => {
+		// 	if (mounted) setLoading(false);
+		// });
 
 		return () => {
 			mounted = false;
